@@ -3,11 +3,13 @@ set encoding=utf8
 
 set nobackup
 set novisualbell
+set visualbell t_vb=
 
 set number
 set ruler
 set showcmd
 set showmode
+set scrolloff=10
 set showmatch
 set matchtime=0
 
@@ -17,6 +19,7 @@ set ignorecase
 set smartcase
 
 set expandtab
+set smarttab
 set autoindent
 set smartindent
 set backspace=indent,eol,start
@@ -24,8 +27,10 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
+autocmd FileType make setlocal noexpandtab
 
-set list
+" set list
+set list listchars=tab:▸\ ,trail:¬,
 
 syntax on
 filetype on
