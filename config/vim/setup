@@ -1,2 +1,3 @@
-+ vim-gtk vim-youcompleteme
-+ clang-format black
++ apt: vim-gtk vim-youcompleteme vim-syntastic clang-format black
++ pip: cpplint
++ manual: vim-plug

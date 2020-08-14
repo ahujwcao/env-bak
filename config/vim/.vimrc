@@ -53,12 +53,36 @@ function! XTermPasteBegin()
   return ""
 endfunction
 
+" ycm
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_strings = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_show_diagnostics_ui = 0
+
 " c/cpp auto format: clang format
-function! Formatonsave()
-  let l:formatdiff = 1
+function! FormatFile()
+  let l:lines="all"
+  let g:clang_format_style = 'Google'
   py3f /usr/share/vim/addons/syntax/clang-format.py
 endfunction
-autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
+autocmd BufWritePre *.h,*.cc,*.cpp call FormatFile()
 
 " python auto format: black
 autocmd BufWritePre *.py execute ':Black'
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_check_on_open = 1
+" cpplint --verbose=2
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_cpplint_exec = "cpplint"
+let g:syntastic_cpp_checkers = ['cpplint', 'gcc']
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_cpp_compiler_options="-Wall"
